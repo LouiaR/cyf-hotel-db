@@ -9,7 +9,7 @@ let db = new sqlite.Database(filename, (err) => {
   console.log('Connected to the in-memory SQlite database.');
 });
 
-// get '/reservations/for-customer/:customer_id'
+// get '/reservations-and-invoices/'
 // TODO: add code here
 router.get('/reservations/for-customer/:customer_id', (req, res)=> {
   let sql = 'select * from reservations where customer_id = ?';
@@ -32,36 +32,32 @@ router.delete('/reservations/:id/', function(req, res) {
   const id = req.params.id;
   const sql = 'delete from reservations where id = ' + id;
 
-  db.run(sql, [id], (err, rows) => {
+  db.run(sql, (err, rows) => {
     res.status(200).json({
       customers: rows
     });
   });
 });
 
-
-// get `/reservations-per-room`
-// TODO: add code here
-
-
-// get '/count-rooms-by-type'
-// TODO: add code here
-
-
-// get '/reservations-for-customer/:minimum_reservations'
+// get `/reservations-per-customer/`
 // TODO: add code here
 
 
 // HOMEWORK
-// get `/stats-price-room/:room_id`
+// get '/reservations/details-between/:from_day/:to_day'
+// TODO: add for code here
+
+// HOMEWORK
+// get '/reservations-per-customer/'
+// TODO: add code here
+
+// HOMEWORK
+// get `/stats-price-room/`
 // TODO: add code here
 
 // HOMEWORK
 // get `/rooms/available-in/:from_day/:to_day`
 // TODO: add code here
 
-// HOMEWORK
-// get '/reservations/details-between/:from_day/:to_day'
-// TODO: add for code here
 
 module.exports = router;
